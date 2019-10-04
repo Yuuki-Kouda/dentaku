@@ -141,25 +141,32 @@ namespace dentaku
 		private void cmdplus_Click(object sender, EventArgs e)
 		{
 			Input_str = ((Button)sender).Text;
-			string inputNum = textBox1.Text;
+			string text = textBox1.Text;
 			ope = enzanshi.Text;
 			eqflg = false;
 
-			//連続で演算子入力
-			if (ope != "")
+			if(text != "")
 			{
-				//演算処理
-				calmethod(inputNum);
+				//連続で演算子入力
+				if (ope != "")
+				{
+					//演算処理
+					calmethod(text);
 
-				enzanshi.Text = Input_str;
-				opeflg = true;
-				textBox1.Text = result.ToString();
-				return;
+					enzanshi.Text = Input_str;
+					opeflg = true;
+					textBox1.Text = result.ToString();
+					return;
+				}
+				else
+				{
+					enzanshi.Text = Input_str;
+					opeflg = true;
+					return;
+				}
 			}
 			else
 			{
-				enzanshi.Text = Input_str;
-				opeflg = true;
 				return;
 			}
 		}
@@ -171,7 +178,10 @@ namespace dentaku
 
 			if(text != "")
 			{
-
+				if(opeflg)
+				{
+					
+				}
 			}
 
 		}
