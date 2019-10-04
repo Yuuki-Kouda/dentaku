@@ -46,6 +46,7 @@ namespace dentaku
 							signflg = true;
 							dpflg = false;
 							hugou.Text = "";
+							enzanshi.Text = "";
 							textBox1.Text = text;
 						}
 						else
@@ -53,6 +54,7 @@ namespace dentaku
 							result = double.Parse(Input_str);
 							signflg = false;
 							dpflg = false;
+							enzanshi.Text = "";
 							textBox1.Text = text;
 						}
 					}
@@ -100,12 +102,14 @@ namespace dentaku
 							signflg = false;
 							dpflg = true;
 							hugou.Text = "";
+							enzanshi.Text = "";
 							textBox1.Text = "0.";
 						}
 						else
 						{
 							result = double.Parse(Input_str);
 							dpflg = true;
+							enzanshi.Text = "";
 							textBox1.Text = "0.";
 						}
 					}
@@ -163,6 +167,12 @@ namespace dentaku
 		//イコール入力
 		private void cmdeq_Click(object sender, EventArgs e)
 		{
+			string text = textBox1.Text;
+
+			if(text != "")
+			{
+
+			}
 
 		}
 
