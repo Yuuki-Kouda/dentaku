@@ -29,7 +29,47 @@ namespace dentaku
 		//数字入力
 		private void buttonnum(object sender, EventArgs e)
 		{
-			
+			Input_str = textBox1.Text;
+			string text = ((Button)sender).Text;
+
+			if (Input_str != "")
+			{
+				//演算子、またはイコールが入力されているとき
+				if (opeflg || eqflg)
+				{
+					if (opeflg)
+					{
+						//負数の時
+						if (signflg)
+						{
+							result = double.Parse(Input_str) * -1;
+							signflg = false;
+							hugou.Text = "";
+							textBox1.Text = text;
+						}
+						else
+						{
+							result = double.Parse(Input_str);
+							textBox1.Text = text;
+						}
+					}
+					else
+					{
+						eqflg = false;
+						textBox1.Text = text;
+					}
+				}
+				//テキストボックスに0が表示されているとき
+				else if(Input_str == "0")
+				{
+					textBox1.Text = text;
+				}
+				else
+				{
+					Input_str += text;
+					textBox1.Text = Input_str;
+				}
+			}
 		}
 
 		//小数点入力
@@ -44,6 +84,7 @@ namespace dentaku
 			Input_str = ((Button)sender).Text;
 			string inputNum = textBox1.Text;
 			ope = enzanshi.Text;
+			eqflg = false;
 
 			//連続で演算子入力
 			if (ope != "")
@@ -111,10 +152,12 @@ namespace dentaku
 			{
 				signflg = true;
 				hugou.Text = "-";
+				eqflg = true;
 				return ;
 			}
 			else
 			{
+				eqflg = true;
 				return ;
 			}
 		}
