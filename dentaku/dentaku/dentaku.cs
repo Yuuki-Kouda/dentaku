@@ -43,7 +43,7 @@ namespace dentaku
 						if (signflg)
 						{
 							result = double.Parse(Input_str) * -1;
-							signflg = false;
+							signflg = true;
 							hugou.Text = "";
 							textBox1.Text = text;
 						}
@@ -70,6 +70,11 @@ namespace dentaku
 					textBox1.Text = Input_str;
 				}
 			}
+			else
+			{
+				textBox1.Text = text;
+			}
+			return;
 		}
 
 		//小数点入力
@@ -94,6 +99,7 @@ namespace dentaku
 
 				enzanshi.Text = Input_str;
 				opeflg = true;
+				textBox1.Text = result.ToString();
 				return;
 			}
 			else
@@ -122,6 +128,11 @@ namespace dentaku
 		private void calmethod(string inputStr)
 		{
 			double inputNum = double.Parse(inputStr);
+			//負数の場合
+			if (signflg)
+			{
+				result *= -1;
+			}
 
 			switch (ope)
 			{
@@ -153,13 +164,14 @@ namespace dentaku
 				signflg = true;
 				hugou.Text = "-";
 				eqflg = true;
-				return ;
 			}
 			else
 			{
 				eqflg = true;
-				return ;
 			}
+			//桁数チェック処理
+
+			return;
 		}
 
 	//	//桁数チェック
