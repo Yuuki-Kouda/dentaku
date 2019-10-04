@@ -29,7 +29,7 @@ namespace dentaku
 		//数字入力
 		private void buttonnum(object sender, EventArgs e)
 		{
-
+			
 		}
 
 		//小数点入力
@@ -42,7 +42,7 @@ namespace dentaku
 		private void cmdplus_Click(object sender, EventArgs e)
 		{
 			Input_str = ((Button)sender).Text;
-			double inputNum = double.Parse(textBox1.Text);
+			string inputNum = textBox1.Text;
 			ope = enzanshi.Text;
 
 			//連続で演算子入力
@@ -78,8 +78,10 @@ namespace dentaku
 
 		///メソッド///
 		//演算処理
-		private void calmethod(double inputNum)
+		private void calmethod(string inputStr)
 		{
+			double inputNum = double.Parse(inputStr);
+
 			switch (ope)
 			{
 				case "+":
@@ -105,7 +107,7 @@ namespace dentaku
 			}
 
 			//結果が負数の場合
-			if(result <= 0)
+			if(result < 0)
 			{
 				signflg = true;
 				hugou.Text = "-";
