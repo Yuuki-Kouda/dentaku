@@ -31,13 +31,14 @@ namespace dentaku
 		{
 			Input_str = textBox1.Text;
 			string text = ((Button)sender).Text;
+			string Input_ope = enzanshi.Text;
 
 			if (Input_str != "")
 			{
 				//演算子、またはイコールが入力されているとき
-				if (opeflg || eqflg)
+				if (Input_ope != "" || eqflg)
 				{
-					if (opeflg)
+					if (Input_ope != "")
 					{
 						//負数の時
 						if (signflg)
@@ -46,7 +47,6 @@ namespace dentaku
 							signflg = true;
 							dpflg = false;
 							hugou.Text = "";
-							enzanshi.Text = "";
 							textBox1.Text = text;
 						}
 						else
@@ -54,7 +54,6 @@ namespace dentaku
 							result = double.Parse(Input_str);
 							signflg = false;
 							dpflg = false;
-							enzanshi.Text = "";
 							textBox1.Text = text;
 						}
 					}
@@ -88,12 +87,13 @@ namespace dentaku
 		{
 			Input_str = ((Button)sender).Text;
 			string text = textBox1.Text;
+			string Input_ope = enzanshi.Text;
 
 			if(text != "")
 			{
-				if(opeflg || eqflg)
+				if(Input_ope != "" || eqflg)
 				{
-					if(opeflg)
+					if(Input_ope != "")
 					{
 						//負数の場合
 						if(signflg)
@@ -102,14 +102,12 @@ namespace dentaku
 							signflg = false;
 							dpflg = true;
 							hugou.Text = "";
-							enzanshi.Text = "";
 							textBox1.Text = "0.";
 						}
 						else
 						{
 							result = double.Parse(Input_str);
 							dpflg = true;
-							enzanshi.Text = "";
 							textBox1.Text = "0.";
 						}
 					}
@@ -161,7 +159,7 @@ namespace dentaku
 				else
 				{
 					enzanshi.Text = Input_str;
-					opeflg = true;
+					opeflg = false;
 					return;
 				}
 			}
@@ -175,12 +173,14 @@ namespace dentaku
 		private void cmdeq_Click(object sender, EventArgs e)
 		{
 			string text = textBox1.Text;
+			string Input_ope = enzanshi.Text;
 
-			if(text != "")
+			if (text != "")
 			{
-				if(opeflg)
+				if(Input_ope != "")
 				{
-					
+					//演算処理へ
+					calmethod(text);
 				}
 			}
 
