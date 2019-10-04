@@ -51,8 +51,7 @@ namespace dentaku
 				//演算処理
 				calmethod(inputNum);
 
-				ope = Input_str;
-				enzanshi.Text = ope;
+				enzanshi.Text = Input_str;
 				opeflg = true;
 				return;
 			}
