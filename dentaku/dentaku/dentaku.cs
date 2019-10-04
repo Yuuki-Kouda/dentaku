@@ -17,10 +17,10 @@ namespace dentaku
 			InitializeComponent();
 		}
 
-		string Input_str = ""; //入力数字
-		string  sign = "";     //符号
+		string Input_str = "";  //入力数字
 		double result = 0;     //計算結果
-		string ope = null;     //演算子
+		string ope = "";       //演算子
+		bool signflg = false;  //符号フラグ
 		bool opeflg = false;   //演算子判定フラグ
 		bool dpflg = false;    //小数点フラグ
 		bool eqflg = false;    //イコールフラグ
@@ -42,18 +42,25 @@ namespace dentaku
 		private void cmdplus_Click(object sender, EventArgs e)
 		{
 			Input_str = ((Button)sender).Text;
-			string text = textBox1.Text;
+			double inputNum = double.Parse(textBox1.Text);
+			ope = enzanshi.Text;
 
-			if (opeflg)
+			//連続で演算子入力
+			if (ope != "")
 			{
 				//演算処理
+				calmethod(inputNum);
 
 				ope = Input_str;
+				enzanshi.Text = ope;
+				opeflg = true;
+				return;
 			}
-
 			else
 			{
 				enzanshi.Text = Input_str;
+				opeflg = true;
+				return;
 			}
 		}
 
@@ -68,48 +75,56 @@ namespace dentaku
 		{
 
 		}
-	}
 
-	///メソッド///
-	//演算処理
-	private double calmethod(string ope, double inputNum, double result)
-	{
-		switch (ope)
+
+		///メソッド///
+		//演算処理
+		private void calmethod(double inputNum)
 		{
-			case "+":
-				result += inputNum;
+			switch (ope)
+			{
+				case "+":
+					result += inputNum;
 
-				break;
+					break;
 
-			case "-":
-				result -= inputNum;
+				case "-":
+					result -= inputNum;
 
-				break;
+					break;
 
-			case "*":
-				result *= inputNum;
+				case "*":
+					result *= inputNum;
 
-				break;
+					break;
 
-			case "/":
-				result /= inputNum;
+				case "/":
+					result /= inputNum;
 
-				break;
+					break;
 
+			}
+
+			//結果が負数の場合
+			if(result <= 0)
+			{
+				signflg = true;
+				hugou.Text = "-";
+				return ;
+			}
+			else
+			{
+				return ;
+			}
 		}
 
-		return result;
+	//	//桁数チェック
+	//	private bool nodcheck(string strNum)
+	//	{
+	//		double num = double.Parse(strNum);
 
+	//		if (num.) ;
+	//	}
 	}
-
-	//桁数チェック
-	private bool nodcheck(string strNum)
-	{
-		double num = double.Parse(strNum);
-
-		if (num.) ;
-	}
-
-
 }
 
