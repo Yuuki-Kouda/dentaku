@@ -44,18 +44,22 @@ namespace dentaku
 						{
 							result = double.Parse(Input_str) * -1;
 							signflg = true;
+							dpflg = false;
 							hugou.Text = "";
 							textBox1.Text = text;
 						}
 						else
 						{
 							result = double.Parse(Input_str);
+							signflg = false;
+							dpflg = false;
 							textBox1.Text = text;
 						}
 					}
 					else
 					{
 						eqflg = false;
+						dpflg = false;
 						textBox1.Text = text;
 					}
 				}
@@ -80,7 +84,53 @@ namespace dentaku
 		//小数点入力
 		private void cmddp_Click(object sender, EventArgs e)
 		{
+			Input_str = ((Button)sender).Text;
+			string text = textBox1.Text;
 
+			if(text != "")
+			{
+				if(opeflg || eqflg)
+				{
+					if(opeflg)
+					{
+						//負数の場合
+						if(signflg)
+						{
+							result = double.Parse(Input_str) * -1;
+							signflg = false;
+							dpflg = true;
+							hugou.Text = "";
+							textBox1.Text = "0.";
+						}
+						else
+						{
+							result = double.Parse(Input_str);
+							dpflg = true;
+							textBox1.Text = "0.";
+						}
+					}
+					else
+					{
+						eqflg = false;
+						dpflg = true;
+						textBox1.Text = "0.";
+					}
+				}
+				else if(!dpflg)
+				{
+					text += ".";
+					dpflg = true;
+				}
+				else
+				{
+					return;
+				}
+			}
+			else
+			{
+				textBox1.Text = "0.";
+				dpflg = true;
+			}
 		}
 
 		//演算子入力
@@ -128,11 +178,6 @@ namespace dentaku
 		private void calmethod(string inputStr)
 		{
 			double inputNum = double.Parse(inputStr);
-			//負数の場合
-			if (signflg)
-			{
-				result *= -1;
-			}
 
 			switch (ope)
 			{
