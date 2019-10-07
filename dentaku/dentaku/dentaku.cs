@@ -21,6 +21,7 @@ namespace dentaku
 		/// 変数宣言
 		/// </summary>
 		string Input_str = "";  //入力数字
+		double hdn_Num = 0;     //隠れ数字
 		double result = 0;      //計算結果
 		string ope = "";        //演算子
 		bool signflg = false;   //符号フラグ
@@ -206,7 +207,7 @@ namespace dentaku
 					else
 					{
 						ope = ((Button)sender).Text;
-						result = double.Parse(text);
+						hdn_Num = double.Parse(text);
 						eqflg = false;
 						opeflg = true;
 						return;
@@ -251,7 +252,6 @@ namespace dentaku
 		private void cmdeq_Click(object sender, EventArgs e)
 		{
 			string text = textBox1.Text;
-			ope = enzanshi.Text;
 
 			if (!errorflg)
 			{
@@ -259,7 +259,7 @@ namespace dentaku
 				{
 					if (!eqflg)
 					{
-						if (ope != "")
+						if (opeflg)
 						{
 							//演算処理へ
 							calmethod(text);
@@ -269,13 +269,14 @@ namespace dentaku
 							{
 								textBox1.Text = result.ToString();
 
-								enzanshi.Text = "";
 								opeflg = false;
 								resultflg = false;
+								eqflg = true;
 								return;
 							}
 							else
 							{
+								textBox1.Text = result.ToString();
 								return;
 							}
 						}
