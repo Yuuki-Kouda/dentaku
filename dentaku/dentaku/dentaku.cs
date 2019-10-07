@@ -91,7 +91,7 @@ namespace dentaku
 						return;
 					}
 					//桁数チェック
-					else if(text.Length <13)
+					else if (text.Length < 13)
 					{
 						text += Input_str;
 						textBox1.Text = text;
@@ -193,7 +193,7 @@ namespace dentaku
 			{
 				if (text != "")
 				{
-					if(opeflg)
+					if (opeflg)
 					{
 						//演算処理
 						calmethod(text);
@@ -313,12 +313,12 @@ namespace dentaku
 			textBox1.Text = "0";
 			enzanshi.Text = "";
 			hugou.Text = "";
-			Input_str = "";  
-			result = 0;     
-			ope = "";       
-			signflg = false;  
-			opeflg = false;   
-			dpflg = false;    
+			Input_str = "";
+			result = 0;
+			ope = "";
+			signflg = false;
+			opeflg = false;
+			dpflg = false;
 			eqflg = false;
 			resultflg = false;
 			errorflg = false;
@@ -351,26 +351,22 @@ namespace dentaku
 					break;
 
 				case "/":
-					result /= inputNum;
+					if (result == 0 || inputNum == 0)
+					{
+						result = 0;
+					}
+					else
+					{
+						result /= inputNum;
+
+					}
 
 					break;
 
 			}
 
-			//結果が負数の場合
-			if(result < 0)
-			{
-				result *= -1;
-				signflg = true;
-				hugou.Text = "-";
-				eqflg = true;
-				resultflg = false;
-			}
-			else
-			{
-				eqflg = true;
-				resultflg = false;
-			}
+			eqflg = true;
+			resultflg = false;
 
 			//桁数チェック処理
 			string strNum = result.ToString();
@@ -385,7 +381,7 @@ namespace dentaku
 		/// <param name="strNum">出力数値</param>
 		private void nodcheck(string strNum)
 		{
-			if(strNum.Length > 13)
+			if (strNum.Length > 13)
 			{
 				//桁超えエラー
 				textBox1.Text = "E";
