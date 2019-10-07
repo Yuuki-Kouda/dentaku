@@ -335,9 +335,7 @@ namespace dentaku
 			if (strNum.Length > 13)
 			{
 				//桁超えエラー
-				textBox1.Text = "E";
-				enzanshi.Text = "";
-				hugou.Text = "";
+				textBox1.Text = strNum.Substring(0, 13);
 				errorflg = true;
 				return;
 			}
