@@ -25,66 +25,79 @@ namespace dentaku
 		bool dpflg = false;     //小数点フラグ
 		bool eqflg = false;     //イコールフラグ
 		bool resultflg = false; //結果フラグ
+		bool errorflg = false;  //エラーフラグ
 
 		///イベント///
 		//数字入力
 		private void buttonnum(object sender, EventArgs e)
 		{
-			Input_str = textBox1.Text;
-			string text = ((Button)sender).Text;
+			string text = textBox1.Text;
+			Input_str = ((Button)sender).Text;
 			ope = enzanshi.Text;
 
-			if (Input_str != "")
+			if (!errorflg)
 			{
-				//演算子、またはイコールが入力されているとき
-				if (opeflg || eqflg)
+				if (text != "")
 				{
-					if (opeflg)
+					//演算子、またはイコールが入力されているとき
+					if (opeflg || eqflg)
 					{
-						//負数の時
-						if (signflg)
+						if (opeflg)
 						{
-							result = double.Parse(Input_str) * -1;
-							signflg = true;
-							dpflg = false;
-							opeflg = false;
-							resultflg = true;
-							hugou.Text = "";
-							textBox1.Text = text;
+							//負数の時
+							if (signflg)
+							{
+								result = double.Parse(text) * -1;
+								signflg = true;
+								dpflg = false;
+								opeflg = false;
+								resultflg = true;
+								hugou.Text = "";
+								textBox1.Text = Input_str;
+								return;
+							}
+							else
+							{
+								result = double.Parse(text);
+								signflg = false;
+								dpflg = false;
+								opeflg = false;
+								resultflg = true;
+								textBox1.Text = Input_str;
+								return;
+							}
 						}
 						else
 						{
-							result = double.Parse(Input_str);
-							signflg = false;
+							eqflg = false;
 							dpflg = false;
-							opeflg = false;
-							resultflg = true;
-							textBox1.Text = text;
+							textBox1.Text = Input_str;
+							return;
 						}
+					}
+					//テキストボックスに0が表示されているとき
+					else if (text == "0")
+					{
+						textBox1.Text = Input_str;
+						return;
+					}
+					else if(text.Length <13)
+					{
+						text += Input_str;
+						textBox1.Text = text;
+						return;
 					}
 					else
 					{
-						eqflg = false;
-						dpflg = false;
-						textBox1.Text = text;
+						return;
 					}
-				}
-				//テキストボックスに0が表示されているとき
-				else if(Input_str == "0")
-				{
-					textBox1.Text = text;
 				}
 				else
 				{
-					Input_str += text;
 					textBox1.Text = Input_str;
+					return;
 				}
 			}
-			else
-			{
-				textBox1.Text = text;
-			}
-			return;
 		}
 
 		//小数点入力
@@ -93,54 +106,61 @@ namespace dentaku
 			string text = textBox1.Text;
 			ope = enzanshi.Text;
 
-			if(text != "")
+			if (!errorflg)
 			{
-				if(opeflg || eqflg)
+				if (text != "")
 				{
-					if(opeflg)
+					if (opeflg || eqflg)
 					{
-						//負数の場合
-						if(signflg)
+						if (opeflg)
 						{
-							result = double.Parse(Input_str) * -1;
-							signflg = false;
-							dpflg = true;
-							opeflg = false;
-							resultflg = true;
-							hugou.Text = "";
-							textBox1.Text = "0.";
+							//負数の場合
+							if (signflg)
+							{
+								result = double.Parse(text) * -1;
+								signflg = false;
+								dpflg = true;
+								opeflg = false;
+								resultflg = true;
+								hugou.Text = "";
+								textBox1.Text = "0.";
+							}
+							else
+							{
+								result = double.Parse(text);
+								dpflg = true;
+								opeflg = false;
+								resultflg = true;
+								textBox1.Text = "0.";
+							}
 						}
 						else
 						{
-							result = double.Parse(Input_str);
+							eqflg = false;
 							dpflg = true;
-							opeflg = false;
-							resultflg = true;
 							textBox1.Text = "0.";
 						}
 					}
+					else if (!dpflg && text.Length < 13)
+					{
+						text += ".";
+						textBox1.Text = text;
+						dpflg = true;
+					}
 					else
 					{
-						eqflg = false;
-						dpflg = true;
-						textBox1.Text = "0.";
+						return;
 					}
-				}
-				else if(!dpflg)
-				{
-					text += ".";
-					textBox1.Text = text;
-					dpflg = true;
 				}
 				else
 				{
-					return;
+					textBox1.Text = "0.";
+					dpflg = true;
 				}
 			}
 			else
 			{
-				textBox1.Text = "0.";
-				dpflg = true;
+				return;
 			}
 		}
 
@@ -152,37 +172,45 @@ namespace dentaku
 			ope = enzanshi.Text;
 			eqflg = false;
 
-			if(text != "")
+			if (!errorflg)
 			{
-				////連続で演算子入力
-				//if (ope != "")
-				//{
-				//	//演算処理
-				//	calmethod(text);
-
-				//	enzanshi.Text = Input_str;
-				//	opeflg = true;
-				//	textBox1.Text = result.ToString();
-				//	return;
-				//}
-				//else
-				//{
-				//	enzanshi.Text = Input_str;
-				//	eqflg = false;
-				//	opeflg = true;
-				//	return;
-				//}
-				if(!resultflg)
+				if (text != "")
 				{
-					if (!opeflg)
+					////連続で演算子入力
+					//if (ope != "")
+					//{
+					//	//演算処理
+					//	calmethod(text);
+
+					//	enzanshi.Text = Input_str;
+					//	opeflg = true;
+					//	textBox1.Text = result.ToString();
+					//	return;
+					//}
+					//else
+					//{
+					//	enzanshi.Text = Input_str;
+					//	eqflg = false;
+					//	opeflg = true;
+					//	return;
+					//}
+					if (!resultflg)
 					{
-						enzanshi.Text = Input_str;
-						eqflg = false;
-						opeflg = true;
+						if (!opeflg)
+						{
+							enzanshi.Text = Input_str;
+							eqflg = false;
+							opeflg = true;
+							return;
+						}
+						else
+						{
+							enzanshi.Text = Input_str;
+							return;
+						}
 					}
 					else
 					{
-						enzanshi.Text = Input_str;
 						return;
 					}
 				}
@@ -203,31 +231,51 @@ namespace dentaku
 			string text = textBox1.Text;
 			ope = enzanshi.Text;
 
-			if (text != "")
+			if (!errorflg)
 			{
-				if (!eqflg)
+				if (text != "")
 				{
-					if (ope != "")
+					if (!eqflg)
 					{
-						//演算処理へ
-						calmethod(text);
+						if (ope != "")
+						{
+							//演算処理へ
+							calmethod(text);
 
-						//結果入力
-						textBox1.Text = result.ToString();
+							//結果入力
+							if (!errorflg)
+							{
+								textBox1.Text = result.ToString();
 
-						enzanshi.Text = "";
-						opeflg = false;
-						resultflg = false;
+								enzanshi.Text = "";
+								opeflg = false;
+								resultflg = false;
+								return;
+							}
+							else
+							{
+								return;
+							}
+						}
+						else
+						{
+							return;
+						}
+					}
+					else
+					{
+						return;
 					}
 				}
 				else
 				{
 					return;
 				}
+			}
+			else
+			{
 				return;
 			}
-			return;
-
 		}
 
 		//クリア入力
@@ -243,10 +291,9 @@ namespace dentaku
 			opeflg = false;   
 			dpflg = false;    
 			eqflg = false;
-
+			errorflg = false;
 			return;
 		}
-
 
 		///メソッド///
 		//演算処理
@@ -292,18 +339,31 @@ namespace dentaku
 				eqflg = true;
 				resultflg = false;
 			}
+
 			//桁数チェック処理
+			string strNum = result.ToString();
+			nodcheck(strNum);
 
 			return;
 		}
 
-	//	//桁数チェック
-	//	private bool nodcheck(string strNum)
-	//	{
-	//		double num = double.Parse(strNum);
-
-	//		if (num.) ;
-	//	}
+		//桁数チェック
+		private void nodcheck(string strNum)
+		{
+			if(strNum.Length > 13)
+			{
+				//桁超えエラー
+				textBox1.Text = "E";
+				enzanshi.Text = "";
+				hugou.Text = "";
+				errorflg = true;
+				return;
+			}
+			else
+			{
+				return;
+			}
+		}
 	}
 }
 
