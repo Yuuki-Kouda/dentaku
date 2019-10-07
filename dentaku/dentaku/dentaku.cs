@@ -17,6 +17,9 @@ namespace dentaku
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// 変数宣言
+		/// </summary>
 		string Input_str = "";  //入力数字
 		double result = 0;      //計算結果
 		string ope = "";        //演算子
@@ -27,21 +30,27 @@ namespace dentaku
 		bool resultflg = false; //結果フラグ
 		bool errorflg = false;  //エラーフラグ
 
-		///イベント///
-		//数字入力
+		/// <summary>
+		/// 数字クリック
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void buttonnum(object sender, EventArgs e)
 		{
 			string text = textBox1.Text;
 			Input_str = ((Button)sender).Text;
 			ope = enzanshi.Text;
 
+			//エラーチェック
 			if (!errorflg)
 			{
+				//テキストボックス入力チェック
 				if (text != "")
 				{
 					//演算子、またはイコールが入力されているとき
 					if (opeflg || eqflg)
 					{
+						//演算子フラグチェック
 						if (opeflg)
 						{
 							//負数の時
@@ -81,6 +90,7 @@ namespace dentaku
 						textBox1.Text = Input_str;
 						return;
 					}
+					//桁数チェック
 					else if(text.Length <13)
 					{
 						text += Input_str;
@@ -100,7 +110,11 @@ namespace dentaku
 			}
 		}
 
-		//小数点入力
+		/// <summary>
+		/// 小数点クリック
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void cmddp_Click(object sender, EventArgs e)
 		{
 			string text = textBox1.Text;
@@ -114,7 +128,6 @@ namespace dentaku
 					{
 						if (opeflg)
 						{
-							//負数の場合
 							if (signflg)
 							{
 								result = double.Parse(text) * -1;
@@ -141,6 +154,7 @@ namespace dentaku
 							textBox1.Text = "0.";
 						}
 					}
+					//小数点フラグチェックと桁数チェック
 					else if (!dpflg && text.Length < 13)
 					{
 						text += ".";
@@ -164,7 +178,11 @@ namespace dentaku
 			}
 		}
 
-		//演算子入力
+		/// <summary>
+		/// 演算子クリック
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void cmdplus_Click(object sender, EventArgs e)
 		{
 			Input_str = ((Button)sender).Text;
@@ -176,24 +194,7 @@ namespace dentaku
 			{
 				if (text != "")
 				{
-					////連続で演算子入力
-					//if (ope != "")
-					//{
-					//	//演算処理
-					//	calmethod(text);
-
-					//	enzanshi.Text = Input_str;
-					//	opeflg = true;
-					//	textBox1.Text = result.ToString();
-					//	return;
-					//}
-					//else
-					//{
-					//	enzanshi.Text = Input_str;
-					//	eqflg = false;
-					//	opeflg = true;
-					//	return;
-					//}
+					//結果数値フラグチェック
 					if (!resultflg)
 					{
 						if (!opeflg)
@@ -225,7 +226,11 @@ namespace dentaku
 			}
 		}
 
-		//イコール入力
+		/// <summary>
+		/// イコールクリック
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void cmdeq_Click(object sender, EventArgs e)
 		{
 			string text = textBox1.Text;
@@ -281,7 +286,11 @@ namespace dentaku
 			}
 		}
 
-		//クリア入力
+		/// <summary>
+		/// クリアクリック
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void cmdclear_Click(object sender, EventArgs e)
 		{
 			textBox1.Text = "0";
@@ -299,8 +308,10 @@ namespace dentaku
 			return;
 		}
 
-		///メソッド///
-		//演算処理
+		/// <summary>
+		/// 演算処理
+		/// </summary>
+		/// <param name="inputStr">入力数字</param>
 		private void calmethod(string inputStr)
 		{
 			double inputNum = double.Parse(inputStr);
@@ -351,7 +362,10 @@ namespace dentaku
 			return;
 		}
 
-		//桁数チェック
+		/// <summary>
+		///桁数チェック
+		/// </summary>
+		/// <param name="strNum">出力数値</param>
 		private void nodcheck(string strNum)
 		{
 			if(strNum.Length > 13)
