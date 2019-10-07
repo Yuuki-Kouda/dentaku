@@ -247,6 +247,8 @@ namespace dentaku
 					{
 						if (opeflg)
 						{
+							result = hdn_Num;
+
 							//演算処理へ
 							calmethod(text);
 
