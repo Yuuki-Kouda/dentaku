@@ -46,8 +46,6 @@
 			this.cmdeq = new System.Windows.Forms.Button();
 			this.cmdclear = new System.Windows.Forms.Button();
 			this.cmddp = new System.Windows.Forms.Button();
-			this.hugou = new System.Windows.Forms.TextBox();
-			this.enzanshi = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// textBox1
@@ -55,8 +53,10 @@
 			this.textBox1.Font = new System.Drawing.Font("MS UI Gothic", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
 			this.textBox1.Location = new System.Drawing.Point(12, 21);
 			this.textBox1.Name = "textBox1";
+			this.textBox1.ReadOnly = true;
 			this.textBox1.Size = new System.Drawing.Size(194, 34);
 			this.textBox1.TabIndex = 0;
+			this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
 			// 
 			// button1
 			// 
@@ -244,27 +244,11 @@
 			this.cmddp.UseVisualStyleBackColor = true;
 			this.cmddp.Click += new System.EventHandler(this.cmddp_Click);
 			// 
-			// hugou
-			// 
-			this.hugou.Location = new System.Drawing.Point(2, 12);
-			this.hugou.Name = "hugou";
-			this.hugou.Size = new System.Drawing.Size(17, 19);
-			this.hugou.TabIndex = 19;
-			// 
-			// enzanshi
-			// 
-			this.enzanshi.Location = new System.Drawing.Point(198, 12);
-			this.enzanshi.Name = "enzanshi";
-			this.enzanshi.Size = new System.Drawing.Size(17, 19);
-			this.enzanshi.TabIndex = 20;
-			// 
 			// dentaku
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(218, 323);
-			this.Controls.Add(this.enzanshi);
-			this.Controls.Add(this.hugou);
 			this.Controls.Add(this.cmddp);
 			this.Controls.Add(this.cmdclear);
 			this.Controls.Add(this.cmdeq);
@@ -310,8 +294,6 @@
         private System.Windows.Forms.Button cmdeq;
         private System.Windows.Forms.Button cmdclear;
         private System.Windows.Forms.Button cmddp;
-		private System.Windows.Forms.TextBox hugou;
-		private System.Windows.Forms.TextBox enzanshi;
 	}
 }
 
