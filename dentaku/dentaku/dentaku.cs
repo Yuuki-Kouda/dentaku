@@ -259,6 +259,7 @@ namespace dentaku
 						}
 						else
 						{
+							eqflg = true;
 							return;
 						}
 					}
@@ -269,6 +270,8 @@ namespace dentaku
 				}
 				else
 				{
+					textBox1.Text = "0";
+					eqflg = true;
 					return;
 				}
 			}
@@ -291,6 +294,7 @@ namespace dentaku
 			opeflg = false;   
 			dpflg = false;    
 			eqflg = false;
+			resultflg = false;
 			errorflg = false;
 			return;
 		}
