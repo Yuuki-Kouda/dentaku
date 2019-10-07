@@ -185,35 +185,52 @@ namespace dentaku
 		/// <param name="e"></param>
 		private void cmdplus_Click(object sender, EventArgs e)
 		{
-			Input_str = ((Button)sender).Text;
 			string text = textBox1.Text;
-			ope = enzanshi.Text;
+			//result = double.Parse(text);
 			eqflg = false;
 
 			if (!errorflg)
 			{
 				if (text != "")
 				{
-					//結果数値フラグチェック
-					if (!resultflg)
+					if(opeflg)
 					{
-						if (!opeflg)
-						{
-							enzanshi.Text = Input_str;
-							eqflg = false;
-							opeflg = true;
-							return;
-						}
-						else
-						{
-							enzanshi.Text = Input_str;
-							return;
-						}
+						//演算処理
+						calmethod(text);
+
+						ope = ((Button)sender).Text;
+						result = double.Parse(text);
+						eqflg = false;
+						opeflg = true;
 					}
 					else
 					{
+						ope = ((Button)sender).Text;
+						result = double.Parse(text);
+						eqflg = false;
+						opeflg = true;
 						return;
 					}
+					////結果数値フラグチェック
+					//if (!resultflg)
+					//{
+					//	if (!opeflg)
+					//	{
+					//		enzanshi.Text = Input_str;
+					//		eqflg = false;
+					//		opeflg = true;
+					//		return;
+					//	}
+					//	else
+					//	{
+					//		enzanshi.Text = Input_str;
+					//		return;
+					//	}
+					//}
+					//else
+					//{
+					//	return;
+					//}
 				}
 				else
 				{
