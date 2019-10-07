@@ -36,9 +36,9 @@ namespace dentaku
 			if (Input_str != "")
 			{
 				//演算子、またはイコールが入力されているとき
-				if (Input_ope != "" || eqflg)
+				if (opeflg || eqflg)
 				{
-					if (Input_ope != "")
+					if (opeflg)
 					{
 						//負数の時
 						if (signflg)
@@ -46,6 +46,7 @@ namespace dentaku
 							result = double.Parse(Input_str) * -1;
 							signflg = true;
 							dpflg = false;
+							opeflg = false;
 							hugou.Text = "";
 							textBox1.Text = text;
 						}
@@ -54,6 +55,7 @@ namespace dentaku
 							result = double.Parse(Input_str);
 							signflg = false;
 							dpflg = false;
+							opeflg = false;
 							textBox1.Text = text;
 						}
 					}
@@ -91,9 +93,9 @@ namespace dentaku
 
 			if(text != "")
 			{
-				if(Input_ope != "" || eqflg)
+				if(opeflg || eqflg)
 				{
-					if(Input_ope != "")
+					if(opeflg)
 					{
 						//負数の場合
 						if(signflg)
@@ -101,6 +103,7 @@ namespace dentaku
 							result = double.Parse(Input_str) * -1;
 							signflg = false;
 							dpflg = true;
+							opeflg = false;
 							hugou.Text = "";
 							textBox1.Text = "0.";
 						}
@@ -108,6 +111,7 @@ namespace dentaku
 						{
 							result = double.Parse(Input_str);
 							dpflg = true;
+							opeflg = false;
 							textBox1.Text = "0.";
 						}
 					}
@@ -159,7 +163,7 @@ namespace dentaku
 				else
 				{
 					enzanshi.Text = Input_str;
-					opeflg = false;
+					opeflg = true;
 					return;
 				}
 			}
