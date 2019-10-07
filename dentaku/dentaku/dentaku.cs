@@ -18,12 +18,13 @@ namespace dentaku
 		}
 
 		string Input_str = "";  //入力数字
-		double result = 0;     //計算結果
-		string ope = "";       //演算子
-		bool signflg = false;  //符号フラグ
-		bool opeflg = false;   //演算子判定フラグ
-		bool dpflg = false;    //小数点フラグ
-		bool eqflg = false;    //イコールフラグ
+		double result = 0;      //計算結果
+		string ope = "";        //演算子
+		bool signflg = false;   //符号フラグ
+		bool opeflg = false;    //演算子判定フラグ
+		bool dpflg = false;     //小数点フラグ
+		bool eqflg = false;     //イコールフラグ
+		bool resultflg = false; //結果フラグ
 
 		///イベント///
 		//数字入力
@@ -31,7 +32,7 @@ namespace dentaku
 		{
 			Input_str = textBox1.Text;
 			string text = ((Button)sender).Text;
-			string Input_ope = enzanshi.Text;
+			ope = enzanshi.Text;
 
 			if (Input_str != "")
 			{
@@ -47,6 +48,7 @@ namespace dentaku
 							signflg = true;
 							dpflg = false;
 							opeflg = false;
+							resultflg = true;
 							hugou.Text = "";
 							textBox1.Text = text;
 						}
@@ -56,6 +58,7 @@ namespace dentaku
 							signflg = false;
 							dpflg = false;
 							opeflg = false;
+							resultflg = true;
 							textBox1.Text = text;
 						}
 					}
@@ -88,6 +91,7 @@ namespace dentaku
 		private void cmddp_Click(object sender, EventArgs e)
 		{
 			string text = textBox1.Text;
+			ope = enzanshi.Text;
 
 			if(text != "")
 			{
@@ -102,6 +106,7 @@ namespace dentaku
 							signflg = false;
 							dpflg = true;
 							opeflg = false;
+							resultflg = true;
 							hugou.Text = "";
 							textBox1.Text = "0.";
 						}
@@ -110,6 +115,7 @@ namespace dentaku
 							result = double.Parse(Input_str);
 							dpflg = true;
 							opeflg = false;
+							resultflg = true;
 							textBox1.Text = "0.";
 						}
 					}
@@ -148,22 +154,40 @@ namespace dentaku
 
 			if(text != "")
 			{
-				//連続で演算子入力
-				if (ope != "")
-				{
-					//演算処理
-					calmethod(text);
+				////連続で演算子入力
+				//if (ope != "")
+				//{
+				//	//演算処理
+				//	calmethod(text);
 
-					enzanshi.Text = Input_str;
-					opeflg = true;
-					textBox1.Text = result.ToString();
-					return;
+				//	enzanshi.Text = Input_str;
+				//	opeflg = true;
+				//	textBox1.Text = result.ToString();
+				//	return;
+				//}
+				//else
+				//{
+				//	enzanshi.Text = Input_str;
+				//	eqflg = false;
+				//	opeflg = true;
+				//	return;
+				//}
+				if(!resultflg)
+				{
+					if (!opeflg)
+					{
+						enzanshi.Text = Input_str;
+						eqflg = false;
+						opeflg = true;
+					}
+					else
+					{
+						enzanshi.Text = Input_str;
+						return;
+					}
 				}
 				else
 				{
-					enzanshi.Text = Input_str;
-					eqflg = false;
-					opeflg = true;
 					return;
 				}
 			}
@@ -193,6 +217,7 @@ namespace dentaku
 
 						enzanshi.Text = "";
 						opeflg = false;
+						resultflg = false;
 					}
 				}
 				else
@@ -259,10 +284,12 @@ namespace dentaku
 				signflg = true;
 				hugou.Text = "-";
 				eqflg = true;
+				resultflg = false;
 			}
 			else
 			{
 				eqflg = true;
+				resultflg = false;
 			}
 			//桁数チェック処理
 
