@@ -177,16 +177,19 @@ namespace dentaku
 		private void cmdeq_Click(object sender, EventArgs e)
 		{
 			string text = textBox1.Text;
-			string Input_ope = enzanshi.Text;
+			ope = enzanshi.Text;
 
 			if (text != "")
 			{
 				if (!eqflg)
 				{
-					if (Input_ope != "")
+					if (ope != "")
 					{
 						//演算処理へ
 						calmethod(text);
+
+						//結果入力
+						textBox1.Text = result.ToString();
 					}
 				}
 				else
