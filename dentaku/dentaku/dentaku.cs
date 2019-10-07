@@ -177,11 +177,19 @@ namespace dentaku
 
 			if (text != "")
 			{
-				if(Input_ope != "")
+				if (!eqflg)
 				{
-					//演算処理へ
-					calmethod(text);
+					if (Input_ope != "")
+					{
+						//演算処理へ
+						calmethod(text);
+					}
 				}
+				else
+				{
+					return;
+				}
+				return;
 			}
 
 		}
