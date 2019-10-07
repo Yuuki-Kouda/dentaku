@@ -92,7 +92,6 @@ namespace dentaku
 		private void cmddp_Click(object sender, EventArgs e)
 		{
 			string text = textBox1.Text;
-			ope = enzanshi.Text;
 
 			if (!errorflg)
 			{
@@ -100,24 +99,11 @@ namespace dentaku
 				{
 					if (opeflg)
 					{
-						if (signflg)
-						{
-							result = double.Parse(text) * -1;
-							signflg = false;
-							dpflg = true;
-							opeflg = false;
-							resultflg = true;
-							hugou.Text = "";
-							textBox1.Text = "0.";
-						}
-						else
-						{
-							result = double.Parse(text);
-							dpflg = true;
-							opeflg = false;
-							resultflg = true;
-							textBox1.Text = "0.";
-						}
+						result = double.Parse(text);
+						dpflg = true;
+						opeflg = false;
+						resultflg = true;
+						textBox1.Text = "0.";
 					}
 					else
 					{
