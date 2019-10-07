@@ -45,11 +45,8 @@ namespace dentaku
 			//エラーチェック
 			if (!errorflg)
 			{
-				//テキストボックス入力チェック
-				if (text != "")
-				{
-					//演算子、またはイコールが入力されているとき
-					if (opeflg || eqflg)
+				//演算子、またはイコールが入力されているとき
+				if (opeflg || eqflg)
 					{
 						//演算子フラグチェック
 						if (opeflg)
@@ -102,12 +99,6 @@ namespace dentaku
 					{
 						return;
 					}
-				}
-				else
-				{
-					textBox1.Text = Input_str;
-					return;
-				}
 			}
 		}
 
@@ -123,9 +114,7 @@ namespace dentaku
 
 			if (!errorflg)
 			{
-				if (text != "")
-				{
-					if (opeflg || eqflg)
+				if (opeflg || eqflg)
 					{
 						if (opeflg)
 						{
@@ -166,12 +155,6 @@ namespace dentaku
 					{
 						return;
 					}
-				}
-				else
-				{
-					textBox1.Text = "0.";
-					dpflg = true;
-				}
 			}
 			else
 			{
@@ -192,9 +175,7 @@ namespace dentaku
 
 			if (!errorflg)
 			{
-				if (text != "")
-				{
-					if (opeflg)
+				if (opeflg)
 					{
 						result = hdn_Num;
 
@@ -234,11 +215,6 @@ namespace dentaku
 					//{
 					//	return;
 					//}
-				}
-				else
-				{
-					return;
-				}
 			}
 			else
 			{
@@ -257,9 +233,7 @@ namespace dentaku
 
 			if (!errorflg)
 			{
-				if (text != "")
-				{
-					if (!eqflg)
+				if (!eqflg)
 					{
 						if (opeflg)
 						{
@@ -292,13 +266,6 @@ namespace dentaku
 					{
 						return;
 					}
-				}
-				else
-				{
-					textBox1.Text = "0";
-					eqflg = true;
-					return;
-				}
 			}
 			else
 			{
