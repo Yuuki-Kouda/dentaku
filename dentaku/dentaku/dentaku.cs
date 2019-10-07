@@ -154,7 +154,6 @@ namespace dentaku
 						if (!errorflg)
 						{
 							ope = ((Button)sender).Text;
-							result = double.Parse(text);
 							eqflg = false;
 							opeflg = true;
 							textBox1.Text = result.ToString();
