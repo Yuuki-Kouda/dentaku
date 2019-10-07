@@ -148,20 +148,27 @@ namespace dentaku
 					if (ope != "")
 					{
 
-						result = hdn_Num;
-
 						//演算処理
 						calmethod(text);
 
-						ope = ((Button)sender).Text;
-						result = double.Parse(text);
-						eqflg = false;
-						opeflg = true;
+						if (!errorflg)
+						{
+							ope = ((Button)sender).Text;
+							result = double.Parse(text);
+							eqflg = false;
+							opeflg = true;
+							textBox1.Text = result.ToString();
+							return;
+						}
+						else
+						{
+							return;
+						}
 					}
 					else
 					{
 						ope = ((Button)sender).Text;
-						hdn_Num = double.Parse(text);
+						result = double.Parse(text);
 						eqflg = false;
 						opeflg = true;
 						return;
@@ -215,9 +222,8 @@ namespace dentaku
 			{
 				if (!eqflg)
 				{
-					if (opeflg)
+					if (ope != "")
 					{
-						result = hdn_Num;
 
 						//演算処理へ
 						calmethod(text);
@@ -230,11 +236,13 @@ namespace dentaku
 							opeflg = false;
 							resultflg = false;
 							eqflg = true;
+							ope = "";
 							return;
 						}
 						else
 						{
 							textBox1.Text = result.ToString();
+							ope = "";
 							return;
 						}
 					}
