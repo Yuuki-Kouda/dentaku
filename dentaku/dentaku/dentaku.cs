@@ -191,13 +191,25 @@ namespace dentaku
 				}
 				return;
 			}
+			return;
 
 		}
 
 		//クリア入力
 		private void cmdclear_Click(object sender, EventArgs e)
 		{
+			textBox1.Text = "0";
+			enzanshi.Text = "";
+			hugou.Text = "";
+			Input_str = "";  
+			result = 0;     
+			ope = "";       
+			signflg = false;  
+			opeflg = false;   
+			dpflg = false;    
+			eqflg = false;
 
+			return;
 		}
 
 
