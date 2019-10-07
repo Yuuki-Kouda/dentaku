@@ -281,6 +281,7 @@ namespace dentaku
 			//結果が負数の場合
 			if(result < 0)
 			{
+				result *= -1;
 				signflg = true;
 				hugou.Text = "-";
 				eqflg = true;
