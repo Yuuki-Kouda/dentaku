@@ -87,9 +87,7 @@ namespace dentaku
 		//小数点入力
 		private void cmddp_Click(object sender, EventArgs e)
 		{
-			Input_str = ((Button)sender).Text;
 			string text = textBox1.Text;
-			string Input_ope = enzanshi.Text;
 
 			if(text != "")
 			{
@@ -125,6 +123,7 @@ namespace dentaku
 				else if(!dpflg)
 				{
 					text += ".";
+					textBox1.Text = text;
 					dpflg = true;
 				}
 				else
