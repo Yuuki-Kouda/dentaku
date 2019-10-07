@@ -40,7 +40,6 @@ namespace dentaku
 		{
 			string text = textBox1.Text;
 			Input_str = ((Button)sender).Text;
-			ope = enzanshi.Text;
 
 			//エラーチェック
 			if (!errorflg)
@@ -59,7 +58,6 @@ namespace dentaku
 								dpflg = false;
 								opeflg = false;
 								resultflg = true;
-								hugou.Text = "";
 								textBox1.Text = Input_str;
 								return;
 							}
@@ -175,8 +173,11 @@ namespace dentaku
 
 			if (!errorflg)
 			{
-				if (opeflg)
+				if (!opeflg)
+				{
+					if (ope != "")
 					{
+
 						result = hdn_Num;
 
 						//演算処理
@@ -195,6 +196,15 @@ namespace dentaku
 						opeflg = true;
 						return;
 					}
+				}
+				else
+				{
+					ope = ((Button)sender).Text;
+					hdn_Num = double.Parse(text);
+					eqflg = false;
+					opeflg = true;
+					return;
+				}
 					////結果数値フラグチェック
 					//if (!resultflg)
 					//{
