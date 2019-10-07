@@ -285,7 +285,6 @@
 			this.Controls.Add(this.textBox1);
 			this.Name = "dentaku";
 			this.Text = "電卓";
-			this.Click += new System.EventHandler(this.cmdplus_Click);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
