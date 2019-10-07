@@ -162,6 +162,7 @@ namespace dentaku
 				else
 				{
 					enzanshi.Text = Input_str;
+					eqflg = false;
 					opeflg = true;
 					return;
 				}
@@ -189,6 +190,9 @@ namespace dentaku
 
 						//結果入力
 						textBox1.Text = result.ToString();
+
+						enzanshi.Text = "";
+						opeflg = false;
 					}
 				}
 				else
