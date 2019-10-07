@@ -196,6 +196,8 @@ namespace dentaku
 				{
 					if (opeflg)
 					{
+						result = hdn_Num;
+
 						//演算処理
 						calmethod(text);
 
@@ -312,10 +314,9 @@ namespace dentaku
 		private void cmdclear_Click(object sender, EventArgs e)
 		{
 			textBox1.Text = "0";
-			enzanshi.Text = "";
-			hugou.Text = "";
 			Input_str = "";
 			result = 0;
+			hdn_Num = 0;
 			ope = "";
 			signflg = false;
 			opeflg = false;
