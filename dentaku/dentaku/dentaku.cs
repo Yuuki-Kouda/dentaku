@@ -293,8 +293,7 @@ namespace dentaku
 			eqflg = true;
 
 			//桁数チェック処理
-			string strNum = result.ToString();
-			nodcheck(strNum);
+			nodcheck();
 
 			return;
 		}
@@ -303,12 +302,12 @@ namespace dentaku
 		///桁数チェック
 		/// </summary>
 		/// <param name="strNum">出力数値</param>
-		private void nodcheck(string strNum)
+		private void nodcheck()
 		{
-			if (strNum.Length > 13)
+			if (result.ToString().Length > 13)
 			{
 				//桁超えエラー
-				textBox1.Text = strNum.Substring(0, 13);
+				textBox1.Text = result.ToString().Substring(0, 13);
 				errorflg = true;
 				return;
 			}
