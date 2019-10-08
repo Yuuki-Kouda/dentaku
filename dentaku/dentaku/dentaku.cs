@@ -21,7 +21,6 @@ namespace dentaku
 		/// 変数宣言
 		/// </summary>
 		string Input_str = "";  //入力数字
-		double hdn_Num = 0;     //隠れ数字
 		double result = 0;      //計算結果
 		string ope = "";        //演算子
 		bool opeflg = false;    //演算子判定フラグ
