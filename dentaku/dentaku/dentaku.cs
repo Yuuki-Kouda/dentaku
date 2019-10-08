@@ -22,11 +22,14 @@ namespace Dentaku
 		/// </summary>
 		string Input_str = "";  //入力数字
 		double result = 0;      //計算結果
-		string ope = "";        //演算子
-		bool opeflg = false;    //演算子判定フラグ
-		bool dpflg = false;     //小数点フラグ
-		bool eqflg = false;     //イコールフラグ
+		string operateNumber = "";        //演算子
+		bool hasClickedJustBeforeOperationButton = false;    //演算子判定フラグ
+		bool hasDecimalPintInput = false;     //小数点フラグ
+		bool hasEqualInput = false;     //イコールフラグ
 		bool errorflg = false;  //エラーフラグ
+		string clickedOperationButton = "";
+		string clickedJustBeforeButton = "";
+
 		//enum IsClickButton
 		//{
 		//	None,
@@ -45,6 +48,11 @@ namespace Dentaku
 		/// <param name="e"></param>
 		private void buttonnum(object sender, EventArgs e)
 		{
+			string InputNumber = ((Button)sender).Text;
+			//
+
+			IsInputNumber(InputNumber);
+			return;
 
 			//	string text = textBox1.Text;
 			//Input_str = ((Button)sender).Text;
@@ -94,6 +102,7 @@ namespace Dentaku
 		/// <param name="e"></param>
 		private void cmddp_Click(object sender, EventArgs e)
 		{
+			IsInputDecimalPoint(((Button)sender).Text);
 			//string text = textBox1.Text;
 
 			//if (opeflg || eqflg)
@@ -132,12 +141,30 @@ namespace Dentaku
 		/// <param name="e"></param>
 		private void cmdplus_Click(object sender, EventArgs e)
 		{
+			string textNumber = textBox1.Text;
+			string inputOperatorNumber = ((Button)sender).Text;
+			hasEqualInput = false;
 
+			if (!hasClickedJustBeforeOperationButton)
 			{
-			}
-			{
+				SetOparator(inputOperatorNumber);
+				hasClickedJustBeforeOperationButton = true;
 				return;
 			}
+
+			if (operateNumber == "")
+			{
+				SetOparator(inputOperatorNumber);
+				SetResultNumber(double.Parse(textNumber));
+				return;
+			}
+
+			//演算処理
+			Calculation();
+
+			textBox1.Text = GetResultNumber().ToString();
+			SetOparator(inputOperatorNumber);
+			return;
 			//string text = textBox1.Text;
 			//eqflg = false;
 
@@ -186,11 +213,23 @@ namespace Dentaku
 		/// <param name="e"></param>
 		private void cmdeq_Click(object sender, EventArgs e)
 		{
+			string inputNumber = textBox1.Text;
 
+			if (hasEqualInput) return;
 
+			if (GetOperator() == "")
 			{
+				hasEqualInput = true;
 				return;
 			}
+
+			//演算処理へ
+			Calculation();
+
+			hasEqualInput = true;
+			SetOparator("");
+			textBox1.Text = GetResultNumber().ToString();
+			return;
 			//string text = textBox1.Text;
 
 			//if (!hasEqualInput)
@@ -236,13 +275,11 @@ namespace Dentaku
 		private void cmdclear_Click(object sender, EventArgs e)
 		{
 			textBox1.Text = "0";
-			Input_str = "";
-			result = 0;
-			ope = "";
-			opeflg = false;
-			dpflg = false;
-			eqflg = false;
-			errorflg = false;
+			SetResultNumber(0);
+			SetOparator("");
+			hasClickedJustBeforeOperationButton = false;
+			hasDecimalPintInput = false;
+			hasEqualInput = false;
 			return;
 		}
 
@@ -300,7 +337,17 @@ namespace Dentaku
 		/// <param name="strNum">出力数値</param>
 		private void NumberOgDigitChecker(string resultNumber)
 		{
-			double inputNum = double.Parse(inputStr);
+			if (resultNumber.Length < 13)
+			{
+				SetResultNumber(double.Parse(resultNumber));
+				return;
+			}
+
+			//桁超え
+			SetResultNumber(double.Parse(resultNumber.Substring(0, 13)));
+			return;
+		}
+
 		/// <summary>
 		/// クリックボタン管理
 		/// </summary>
@@ -364,7 +411,30 @@ namespace Dentaku
 		{
 			if (textBox1.Text.Length > 13) return;
 
-			switch (ope)
+			if (hasEqualInput)
+			{
+				textBox1.Text = inputNumber;
+				hasEqualInput = false;
+			}
+
+			if (GetOperator() != "")
+			{
+				//テキストボックス数値を退避
+				SetResultNumber(double.Parse(textBox1.Text));
+				hasClickedJustBeforeOperationButton = false;
+				return;
+			}
+
+			if(textBox1.Text == "0")
+			{
+				textBox1.Text = inputNumber;
+				return;
+			}
+
+			textBox1.Text += inputNumber;
+			return;
+		}
+
 		/// <summary>
 		/// 0処理
 		/// </summary>
@@ -376,62 +446,103 @@ namespace Dentaku
 		//	IsInputNumber(inputZero);
 		//	return;
 		//}
-			{
-				case "+":
-					result += inputNum;
 
-					break;
+		/// <summary>
+		/// 小数点処理
+		/// </summary>
+		/// <param name="inputDesimalPoint"></param>
+		private void IsInputDecimalPoint(string inputDesimalPoint)
+		{
+			if (hasDecimalPintInput) return;
 
-				case "-":
-					result -= inputNum;
-
-					break;
-
-				case "*":
-					result *= inputNum;
-
-					break;
-
-				case "/":
-					if (result == 0 || inputNum == 0)
-					{
-						result = 0;
-					}
-					else
-					{
-						result /= inputNum;
-
-					}
-
-					break;
-
-			}
-
-			eqflg = true;
-
-			//桁数チェック処理
-			nodcheck();
-
+			//数字入力処理へ
+			IsInputNumber(inputDesimalPoint);
+			hasDecimalPintInput = true;
 			return;
 		}
 
 		/// <summary>
-		///桁数チェック
+		/// 演算子set
 		/// </summary>
-		/// <param name="strNum">出力数値</param>
-		private void nodcheck()
+		/// <param name="InputOperator"></param>
+		private void SetOparator(string InputOperator)
 		{
-			if (result.ToString().Length > 13)
+			operateNumber = InputOperator;
+			return;
+		}
+
+		/// <summary>
+		/// 演算子get
+		/// </summary>
+		/// <returns></returns>
+		private string GetOperator()
+		{
+			return operateNumber;
+		}
+
+		/// <summary>
+		/// 計算結果set
+		/// </summary>
+		/// <param name="outputResultNumber"></param>
+		private void SetResultNumber(double outputResultNumber)
+		{
+			result = outputResultNumber;
+			return;
+		}
+
+		/// <summary>
+		/// 計算結果get
+		/// </summary>
+		/// <returns></returns>
+		private double GetResultNumber()
+		{
+			return result;
+		}
+		/// <summary>
+		/// 演算処理
+		/// </summary>
+		private void Calculation()
+		{
+			double resultNumber = GetResultNumber();
+
+			switch (GetOperator())
 			{
-				//桁超えエラー
-				textBox1.Text = result.ToString().Substring(0, 13);
-				errorflg = true;
-				return;
+				case "+":
+					resultNumber += double.Parse(textBox1.Text);
+
+					break;
+
+				case "-":
+					resultNumber -= double.Parse(textBox1.Text);
+
+					break;
+
+				case "*":
+					resultNumber *= double.Parse(textBox1.Text);
+
+					break;
+
+				case "/":
+					if (resultNumber == 0 || double.Parse(textBox1.Text) == 0)
+					{
+						resultNumber = 0;
+					}
+					else
+					{
+						resultNumber /= double.Parse(textBox1.Text);
+
+					}
+
+					break;
+
 			}
-			else
-			{
-				return;
-			}
+
+			string resultNumber_Str = resultNumber.ToString();
+			//桁数チェック処理
+			NumberOgDigitChecker(resultNumber_Str);
+
+			return;
+
 		}
 	}
 }
