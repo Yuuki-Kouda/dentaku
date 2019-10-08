@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace dentaku
+namespace Dentaku
 {
-	public partial class dentaku : Form
+	public partial class Dentaku : Form
 	{
-		public dentaku()
+		public Dentaku()
 		{
 			InitializeComponent();
 		}

@@ -1,11 +1,11 @@
-﻿namespace dentaku
+﻿namespace Dentaku
 {
-    partial class dentaku
-    {
-        /// <summary>
-        /// 必要なデザイナー変数です。
-        /// </summary>
-        private System.ComponentModel.IContainer components = null;
+	partial class Dentaku
+	{
+		/// <summary>
+		/// 必要なデザイナー変数です。
+		/// </summary>
+		private System.ComponentModel.IContainer components = null;
 
         /// <summary>
         /// 使用中のリソースをすべてクリーンアップします。

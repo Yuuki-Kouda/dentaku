@@ -46,16 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dentaku.cs">
+    <Compile Include="Dentaku.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dentaku.Designer.cs">
-      <DependentUpon>dentaku.cs</DependentUpon>
+    <Compile Include="Dentaku.Designer.cs">
+      <DependentUpon>Dentaku.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="dentaku.resx">
-      <DependentUpon>dentaku.cs</DependentUpon>
+    <EmbeddedResource Include="Dentaku.resx">
+      <DependentUpon>Dentaku.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
