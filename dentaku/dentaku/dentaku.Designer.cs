@@ -62,7 +62,7 @@
 			// button1
 			// 
 			this.button1.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.button1.Location = new System.Drawing.Point(12, 70);
+			this.button1.Location = new System.Drawing.Point(12, 170);
 			this.button1.Name = "button1";
 			this.button1.Size = new System.Drawing.Size(44, 44);
 			this.button1.TabIndex = 1;
@@ -73,7 +73,7 @@
 			// button2
 			// 
 			this.button2.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.button2.Location = new System.Drawing.Point(62, 70);
+			this.button2.Location = new System.Drawing.Point(62, 170);
 			this.button2.Name = "button2";
 			this.button2.Size = new System.Drawing.Size(44, 44);
 			this.button2.TabIndex = 2;
@@ -84,7 +84,7 @@
 			// button3
 			// 
 			this.button3.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.button3.Location = new System.Drawing.Point(112, 70);
+			this.button3.Location = new System.Drawing.Point(112, 170);
 			this.button3.Name = "button3";
 			this.button3.Size = new System.Drawing.Size(44, 44);
 			this.button3.TabIndex = 3;
@@ -128,7 +128,7 @@
 			// button7
 			// 
 			this.button7.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.button7.Location = new System.Drawing.Point(12, 170);
+			this.button7.Location = new System.Drawing.Point(12, 70);
 			this.button7.Name = "button7";
 			this.button7.Size = new System.Drawing.Size(44, 44);
 			this.button7.TabIndex = 7;
@@ -139,7 +139,7 @@
 			// button8
 			// 
 			this.button8.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.button8.Location = new System.Drawing.Point(62, 170);
+			this.button8.Location = new System.Drawing.Point(62, 70);
 			this.button8.Name = "button8";
 			this.button8.Size = new System.Drawing.Size(44, 44);
 			this.button8.TabIndex = 8;
@@ -150,7 +150,7 @@
 			// button9
 			// 
 			this.button9.Font = new System.Drawing.Font("MS UI Gothic", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-			this.button9.Location = new System.Drawing.Point(112, 170);
+			this.button9.Location = new System.Drawing.Point(112, 70);
 			this.button9.Name = "button9";
 			this.button9.Size = new System.Drawing.Size(44, 44);
 			this.button9.TabIndex = 9;
