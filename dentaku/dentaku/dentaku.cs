@@ -24,11 +24,9 @@ namespace dentaku
 		double hdn_Num = 0;     //隠れ数字
 		double result = 0;      //計算結果
 		string ope = "";        //演算子
-		bool signflg = false;   //符号フラグ
 		bool opeflg = false;    //演算子判定フラグ
 		bool dpflg = false;     //小数点フラグ
 		bool eqflg = false;     //イコールフラグ
-		bool resultflg = false; //結果フラグ
 		bool errorflg = false;  //エラーフラグ
 
 		/// <summary>
@@ -52,7 +50,6 @@ namespace dentaku
 					{
 						dpflg = false;
 						opeflg = false;
-						resultflg = true;
 						textBox1.Text = Input_str;
 						return;
 					}
@@ -102,7 +99,6 @@ namespace dentaku
 						result = double.Parse(text);
 						dpflg = true;
 						opeflg = false;
-						resultflg = true;
 						textBox1.Text = "0.";
 					}
 					else
@@ -138,7 +134,6 @@ namespace dentaku
 		private void cmdplus_Click(object sender, EventArgs e)
 		{
 			string text = textBox1.Text;
-			//result = double.Parse(text);
 			eqflg = false;
 
 			if (!errorflg)
@@ -176,31 +171,9 @@ namespace dentaku
 				else
 				{
 					ope = ((Button)sender).Text;
-					hdn_Num = double.Parse(text);
 					eqflg = false;
-					opeflg = true;
 					return;
 				}
-				////結果数値フラグチェック
-				//if (!resultflg)
-				//{
-				//	if (!opeflg)
-				//	{
-				//		enzanshi.Text = Input_str;
-				//		eqflg = false;
-				//		opeflg = true;
-				//		return;
-				//	}
-				//	else
-				//	{
-				//		enzanshi.Text = Input_str;
-				//		return;
-				//	}
-				//}
-				//else
-				//{
-				//	return;
-				//}
 			}
 			else
 			{
@@ -233,15 +206,12 @@ namespace dentaku
 							textBox1.Text = result.ToString();
 
 							opeflg = false;
-							resultflg = false;
 							eqflg = true;
 							ope = "";
 							return;
 						}
 						else
 						{
-							textBox1.Text = result.ToString();
-							ope = "";
 							return;
 						}
 					}
@@ -272,13 +242,10 @@ namespace dentaku
 			textBox1.Text = "0";
 			Input_str = "";
 			result = 0;
-			hdn_Num = 0;
 			ope = "";
-			signflg = false;
 			opeflg = false;
 			dpflg = false;
 			eqflg = false;
-			resultflg = false;
 			errorflg = false;
 			return;
 		}
@@ -324,7 +291,6 @@ namespace dentaku
 			}
 
 			eqflg = true;
-			resultflg = false;
 
 			//桁数チェック処理
 			string strNum = result.ToString();
