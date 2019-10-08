@@ -27,6 +27,16 @@ namespace Dentaku
 		bool dpflg = false;     //小数点フラグ
 		bool eqflg = false;     //イコールフラグ
 		bool errorflg = false;  //エラーフラグ
+		//enum IsClickButton
+		//{
+		//	None,
+		//	DecimalPoint,
+		//	Plus,
+		//	Minus,
+		//	Prouduct,
+		//	Division,
+		//	Equal,
+		//}
 
 		/// <summary>
 		/// 数字クリック
@@ -35,49 +45,46 @@ namespace Dentaku
 		/// <param name="e"></param>
 		private void buttonnum(object sender, EventArgs e)
 		{
-			string text = textBox1.Text;
-			Input_str = ((Button)sender).Text;
 
-			//エラーチェック
-			if (!errorflg)
-			{
-				//演算子、またはイコールが入力されているとき
-				if (opeflg || eqflg)
-				{
-					//演算子フラグチェック
-					if (opeflg)
-					{
-						dpflg = false;
-						opeflg = false;
-						textBox1.Text = Input_str;
-						return;
-					}
-					else
-					{
-						eqflg = false;
-						dpflg = false;
-						textBox1.Text = Input_str;
-						return;
-					}
-				}
-				//テキストボックスに0が表示されているとき
-				else if (text == "0")
-				{
-					textBox1.Text = Input_str;
-					return;
-				}
-				//桁数チェック
-				else if (text.Length < 13)
-				{
-					text += Input_str;
-					textBox1.Text = text;
-					return;
-				}
-				else
-				{
-					return;
-				}
-			}
+			//	string text = textBox1.Text;
+			//Input_str = ((Button)sender).Text;
+
+			////演算子、またはイコールが入力されているとき
+			//if (opeflg || eqflg)
+			//{
+			//	//演算子フラグチェック
+			//	if (opeflg)
+			//	{
+			//		HasDecimalPintInput = false;
+			//		opeflg = false;
+			//		textBox1.Text = Input_str;
+			//		return;
+			//	}
+			//	else
+			//	{
+			//		eqflg = false;
+			//		HasDecimalPintInput = false;
+			//		textBox1.Text = Input_str;
+			//		return;
+			//	}
+			//}
+			////テキストボックスに0が表示されているとき
+			//else if (text == "0")
+			//{
+			//	textBox1.Text = Input_str;
+			//	return;
+			//}
+			////桁数チェック
+			//else if (text.Length < 13)
+			//{
+			//	text += Input_str;
+			//	textBox1.Text = text;
+			//	return;
+			//}
+			//else
+			//{
+			//	return;
+			//}
 		}
 
 		/// <summary>
@@ -87,42 +94,35 @@ namespace Dentaku
 		/// <param name="e"></param>
 		private void cmddp_Click(object sender, EventArgs e)
 		{
-			string text = textBox1.Text;
+			//string text = textBox1.Text;
 
-			if (!errorflg)
-			{
-				if (opeflg || eqflg)
-				{
-					if (opeflg)
-					{
-						result = double.Parse(text);
-						dpflg = true;
-						opeflg = false;
-						textBox1.Text = "0.";
-					}
-					else
-					{
-						eqflg = false;
-						dpflg = true;
-						textBox1.Text = "0.";
-					}
-				}
-				//小数点フラグチェックと桁数チェック
-				else if (!dpflg && text.Length < 13)
-				{
-					text += ".";
-					textBox1.Text = text;
-					dpflg = true;
-				}
-				else
-				{
-					return;
-				}
-			}
-			else
-			{
-				return;
-			}
+			//if (opeflg || eqflg)
+			//{
+			//	if (opeflg)
+			//	{
+			//		result = double.Parse(text);
+			//		HasDecimalPintInput = true;
+			//		opeflg = false;
+			//		textBox1.Text = "0.";
+			//	}
+			//	else
+			//	{
+			//		eqflg = false;
+			//		HasDecimalPintInput = true;
+			//		textBox1.Text = "0.";
+			//	}
+			//}
+			////小数点フラグチェックと桁数チェック
+			//else if (!HasDecimalPintInput && text.Length < 13)
+			//{
+			//	text += ".";
+			//	textBox1.Text = text;
+			//	HasDecimalPintInput = true;
+			//}
+			//else
+			//{
+			//	return;
+			//}
 		}
 
 		/// <summary>
@@ -132,52 +132,51 @@ namespace Dentaku
 		/// <param name="e"></param>
 		private void cmdplus_Click(object sender, EventArgs e)
 		{
-			string text = textBox1.Text;
-			eqflg = false;
 
-			if (!errorflg)
 			{
-				if (!opeflg)
-				{
-					if (ope != "")
-					{
-
-						//演算処理
-						calmethod(text);
-
-						if (!errorflg)
-						{
-							ope = ((Button)sender).Text;
-							eqflg = false;
-							opeflg = true;
-							textBox1.Text = result.ToString();
-							return;
-						}
-						else
-						{
-							return;
-						}
-					}
-					else
-					{
-						ope = ((Button)sender).Text;
-						result = double.Parse(text);
-						eqflg = false;
-						opeflg = true;
-						return;
-					}
-				}
-				else
-				{
-					ope = ((Button)sender).Text;
-					eqflg = false;
-					return;
-				}
 			}
-			else
 			{
 				return;
 			}
+			//string text = textBox1.Text;
+			//eqflg = false;
+
+			//if (!opeflg)
+			//{
+			//	if (operateNumber != "")
+			//	{
+
+			//		//演算処理
+			//		calmethod(text);
+
+			//		if (!errorflg)
+			//		{
+			//			operateNumber = ((Button)sender).Text;
+			//			eqflg = false;
+			//			opeflg = true;
+			//			textBox1.Text = result.ToString();
+			//			return;
+			//		}
+			//		else
+			//		{
+			//			return;
+			//		}
+			//	}
+			//	else
+			//	{
+			//		operateNumber = ((Button)sender).Text;
+			//		result = double.Parse(text);
+			//		eqflg = false;
+			//		opeflg = true;
+			//		return;
+			//	}
+			//}
+			//else
+			//{
+			//	operateNumber = ((Button)sender).Text;
+			//	eqflg = false;
+			//	return;
+			//}
 		}
 
 		/// <summary>
@@ -187,48 +186,46 @@ namespace Dentaku
 		/// <param name="e"></param>
 		private void cmdeq_Click(object sender, EventArgs e)
 		{
-			string text = textBox1.Text;
 
-			if (!errorflg)
-			{
-				if (!eqflg)
-				{
-					if (ope != "")
-					{
 
-						//演算処理へ
-						calmethod(text);
-
-						//結果入力
-						if (!errorflg)
-						{
-							textBox1.Text = result.ToString();
-
-							opeflg = false;
-							eqflg = true;
-							ope = "";
-							return;
-						}
-						else
-						{
-							return;
-						}
-					}
-					else
-					{
-						eqflg = true;
-						return;
-					}
-				}
-				else
-				{
-					return;
-				}
-			}
-			else
 			{
 				return;
 			}
+			//string text = textBox1.Text;
+
+			//if (!hasEqualInput)
+			//{
+			//	if (operateNumber != "")
+			//	{
+
+			//		//演算処理へ
+			//		calmethod(text);
+
+			//		//結果入力
+			//		if (!errorflg)
+			//		{
+			//			textBox1.Text = result.ToString();
+
+			//			hasClickedJustBeforeOperationButton = false;
+			//			hasEqualInput = true;
+			//			operateNumber = "";
+			//			return;
+			//		}
+			//		else
+			//		{
+			//			return;
+			//		}
+			//	}
+			//	else
+			//	{
+			//		hasEqualInput = true;
+			//		return;
+			//	}
+			//}
+			//else
+			//{
+			//	return;
+			//}
 		}
 
 		/// <summary>
@@ -253,11 +250,132 @@ namespace Dentaku
 		/// 演算処理
 		/// </summary>
 		/// <param name="inputStr">入力数字</param>
-		private void calmethod(string inputStr)
+		//private void calmethod(string inputStr)
+		//{
+		//	double inputNum = double.Parse(inputStr);
+
+		//	switch (operateNumber)
+		//	{
+		//		case "+":
+		//			result += inputNum;
+
+		//			break;
+
+		//		case "-":
+		//			result -= inputNum;
+
+		//			break;
+
+		//		case "*":
+		//			result *= inputNum;
+
+		//			break;
+
+		//		case "/":
+		//			if (result == 0 || inputNum == 0)
+		//			{
+		//				result = 0;
+		//			}
+		//			else
+		//			{
+		//				result /= inputNum;
+
+		//			}
+
+		//			break;
+
+		//	}
+
+		//	hasEqualInput = true;
+
+		//	//桁数チェック処理
+		//	NumberOgDigitChecker();
+
+		//	return;
+		//}
+
+		/// <summary>
+		///桁数チェック
+		/// </summary>
+		/// <param name="strNum">出力数値</param>
+		private void NumberOgDigitChecker(string resultNumber)
 		{
 			double inputNum = double.Parse(inputStr);
+		/// <summary>
+		/// クリックボタン管理
+		/// </summary>
+		/// <param name="clickButtonText"></param>
+		/// <returns>クリックボタン内容</returns>
+		//private IsClickButton IsClickedButton(string clickButtonText)
+		//{
+		//	switch (clickedOperationButton)
+		//	{
+		//		case "+":
+		//			return IsClickButton.Plus;
+
+		//		case "-":
+		//			return IsClickButton.Minus;
+
+		//		case "*":
+		//			return IsClickButton.Prouduct;
+
+		//		case "/":
+		//			return IsClickButton.Division;
+
+		//		default:
+		//			return IsClickButton.None;
+		//	}
+		//}
+
+		/// <summary>
+		/// 直前クリックボタン管理
+		/// </summary>
+		/// <returns></returns>
+		//private IsClickButton IsClickedJustBeforeButton()
+		//{
+		//	switch (clickedOperationButton)
+		//	{
+
+		//		case "+":
+		//			return IsClickButton.Plus;
+
+		//		case "-":
+		//			return IsClickButton.Minus;
+
+		//		case "*":
+		//			return IsClickButton.Prouduct;
+
+		//		case "/":
+		//			return IsClickButton.Division;
+
+		//		case "=":
+		//			return IsClickButton.Equal;
+
+		//		default:
+		//			return IsClickButton.None;
+		//	}
+		//}
+
+		/// <summary>
+		/// 数値入力処理
+		/// </summary>
+		/// <param name="inputNumber"></param>
+		private void IsInputNumber(string inputNumber)
+		{
+			if (textBox1.Text.Length > 13) return;
 
 			switch (ope)
+		/// <summary>
+		/// 0処理
+		/// </summary>
+		//private void IsInputZero(string inputZero)
+		//{
+		//	if (textBox1.Text == "0") return;
+
+		//	//数字入力処理へ
+		//	IsInputNumber(inputZero);
+		//	return;
+		//}
 			{
 				case "+":
 					result += inputNum;
