@@ -119,6 +119,7 @@ namespace Dentaku
 		{
 			var inputOperatorNumber = ((Button)sender).Text;
 			getSet.hasClickedJustBeforeEqualButton = false;
+			getSet.hasDecimalPointInputed = false;
 
 			if (getSet.hasClickedJustBeforeOperatorButton)
 			{
@@ -151,6 +152,7 @@ namespace Dentaku
 		private void IsClickEqualButton(object sender, EventArgs e)
 		{
 			var inputNumber = textBox1.Text;
+			getSet.hasDecimalPointInputed = false;
 
 			if (getSet.hasClickedJustBeforeEqualButton) return;
 
