@@ -18,35 +18,9 @@ namespace Dentaku
 		}
 
 		/// <summary>
-		/// 変数宣言
+		/// GetSetクラス
 		/// </summary>
-		string Input_str = "";  //入力数字
-		double result = 0;      //計算結果
-		string operateNumber = "";        //演算子
-		bool hasClickedJustBeforeOperationButton = false;    //演算子判定フラグ
-		bool hasDecimalPintInput = false;     //小数点フラグ
-		bool hasEqualInput = false;     //イコールフラグ
-		bool errorflg = false;  //エラーフラグ
-		string clickedOperationButton = "";
-		string clickedJustBeforeButton = "";
-
-		//enum IsClickButton
-		//{
-		//	None,
-		//	DecimalPoint,
-		//	Plus,
-		//	Minus,
-		//	Prouduct,
-		//	Division,
-		//	Equal,
-		//}
-
-		/// <summary>
-		/// 数字クリック
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void buttonnum(object sender, EventArgs e)
+		public class GetSet
 		{
 			string InputNumber = ((Button)sender).Text;
 			//
@@ -93,6 +67,16 @@ namespace Dentaku
 			//{
 			//	return;
 			//}
+			//計算結果
+			public double resultNumber { get; set; } = 0;
+			//演算子
+			public string operatorNumber { get; set; } = "";
+			//演算子直前押下判定
+			public bool hasClickedJustBeforeOperatorButton { get; set; } = false;
+			//小数点入力済み判定
+			public bool hasDecimalPointInputed { get; set; } = false;
+			//イコール直前押下判定
+			public bool hasClickedJustBeforeEqualButton { get; set; } = false;
 		}
 
 		/// <summary>
@@ -133,6 +117,8 @@ namespace Dentaku
 			//	return;
 			//}
 		}
+		//インスタンス生成
+		GetSet getSet = new GetSet();
 
 		/// <summary>
 		/// 演算子クリック
