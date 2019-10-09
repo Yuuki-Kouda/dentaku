@@ -68,7 +68,7 @@
 			this.button1.TabIndex = 1;
 			this.button1.Text = "1";
 			this.button1.UseVisualStyleBackColor = true;
-			this.button1.Click += new System.EventHandler(this.buttonnum);
+			this.button1.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// button2
 			// 
@@ -79,7 +79,7 @@
 			this.button2.TabIndex = 2;
 			this.button2.Text = "2";
 			this.button2.UseVisualStyleBackColor = true;
-			this.button2.Click += new System.EventHandler(this.buttonnum);
+			this.button2.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// button3
 			// 
@@ -90,7 +90,7 @@
 			this.button3.TabIndex = 3;
 			this.button3.Text = "3";
 			this.button3.UseVisualStyleBackColor = true;
-			this.button3.Click += new System.EventHandler(this.buttonnum);
+			this.button3.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// button4
 			// 
@@ -101,7 +101,7 @@
 			this.button4.TabIndex = 4;
 			this.button4.Text = "4";
 			this.button4.UseVisualStyleBackColor = true;
-			this.button4.Click += new System.EventHandler(this.buttonnum);
+			this.button4.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// button5
 			// 
@@ -112,7 +112,7 @@
 			this.button5.TabIndex = 5;
 			this.button5.Text = "5";
 			this.button5.UseVisualStyleBackColor = true;
-			this.button5.Click += new System.EventHandler(this.buttonnum);
+			this.button5.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// button6
 			// 
@@ -123,7 +123,7 @@
 			this.button6.TabIndex = 6;
 			this.button6.Text = "6";
 			this.button6.UseVisualStyleBackColor = true;
-			this.button6.Click += new System.EventHandler(this.buttonnum);
+			this.button6.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// button7
 			// 
@@ -134,7 +134,7 @@
 			this.button7.TabIndex = 7;
 			this.button7.Text = "7";
 			this.button7.UseVisualStyleBackColor = true;
-			this.button7.Click += new System.EventHandler(this.buttonnum);
+			this.button7.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// button8
 			// 
@@ -145,7 +145,7 @@
 			this.button8.TabIndex = 8;
 			this.button8.Text = "8";
 			this.button8.UseVisualStyleBackColor = true;
-			this.button8.Click += new System.EventHandler(this.buttonnum);
+			this.button8.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// button9
 			// 
@@ -156,7 +156,7 @@
 			this.button9.TabIndex = 9;
 			this.button9.Text = "9";
 			this.button9.UseVisualStyleBackColor = true;
-			this.button9.Click += new System.EventHandler(this.buttonnum);
+			this.button9.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// button0
 			// 
@@ -167,7 +167,7 @@
 			this.button0.TabIndex = 10;
 			this.button0.Text = "0";
 			this.button0.UseVisualStyleBackColor = true;
-			this.button0.Click += new System.EventHandler(this.buttonnum);
+			this.button0.Click += new System.EventHandler(this.IsClickNumberButton);
 			// 
 			// cmddiv
 			// 
@@ -178,7 +178,7 @@
 			this.cmddiv.TabIndex = 12;
 			this.cmddiv.Text = "/";
 			this.cmddiv.UseVisualStyleBackColor = true;
-			this.cmddiv.Click += new System.EventHandler(this.cmdplus_Click);
+			this.cmddiv.Click += new System.EventHandler(this.IsClickOperatorButton);
 			// 
 			// cmdmpc
 			// 
@@ -189,7 +189,7 @@
 			this.cmdmpc.TabIndex = 13;
 			this.cmdmpc.Text = "*";
 			this.cmdmpc.UseVisualStyleBackColor = true;
-			this.cmdmpc.Click += new System.EventHandler(this.cmdplus_Click);
+			this.cmdmpc.Click += new System.EventHandler(this.IsClickOperatorButton);
 			// 
 			// cmdminus
 			// 
@@ -200,7 +200,7 @@
 			this.cmdminus.TabIndex = 14;
 			this.cmdminus.Text = "-";
 			this.cmdminus.UseVisualStyleBackColor = true;
-			this.cmdminus.Click += new System.EventHandler(this.cmdplus_Click);
+			this.cmdminus.Click += new System.EventHandler(this.IsClickOperatorButton);
 			// 
 			// cmdplus
 			// 
@@ -211,7 +211,7 @@
 			this.cmdplus.TabIndex = 15;
 			this.cmdplus.Text = "+";
 			this.cmdplus.UseVisualStyleBackColor = true;
-			this.cmdplus.Click += new System.EventHandler(this.cmdplus_Click);
+			this.cmdplus.Click += new System.EventHandler(this.IsClickOperatorButton);
 			// 
 			// cmdeq
 			// 
@@ -222,7 +222,7 @@
 			this.cmdeq.TabIndex = 16;
 			this.cmdeq.Text = "=";
 			this.cmdeq.UseVisualStyleBackColor = true;
-			this.cmdeq.Click += new System.EventHandler(this.cmdeq_Click);
+			this.cmdeq.Click += new System.EventHandler(this.IsClickEqualButton);
 			// 
 			// cmdclear
 			// 
@@ -233,7 +233,7 @@
 			this.cmdclear.TabIndex = 17;
 			this.cmdclear.Text = "c";
 			this.cmdclear.UseVisualStyleBackColor = true;
-			this.cmdclear.Click += new System.EventHandler(this.cmdclear_Click);
+			this.cmdclear.Click += new System.EventHandler(this.IsClickClearButton);
 			// 
 			// cmddp
 			// 
@@ -243,7 +243,7 @@
 			this.cmddp.TabIndex = 18;
 			this.cmddp.Text = ".";
 			this.cmddp.UseVisualStyleBackColor = true;
-			this.cmddp.Click += new System.EventHandler(this.cmddp_Click);
+			this.cmddp.Click += new System.EventHandler(this.IsClickDecimalPointButton);
 			// 
 			// dentaku
 			// 

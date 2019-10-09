@@ -69,273 +69,7 @@ namespace Dentaku
 				return;
 			}
 
-			//演算処理
-			Calculation();
-
-			textBox1.Text = GetResultNumber().ToString();
-			SetOparator(inputOperatorNumber);
-			return;
-			//string text = textBox1.Text;
-			//eqflg = false;
-
-			//if (!opeflg)
-			//{
-			//	if (operateNumber != "")
-			//	{
-
-			//		//演算処理
-			//		calmethod(text);
-
-			//		if (!errorflg)
-			//		{
-			//			operateNumber = ((Button)sender).Text;
-			//			eqflg = false;
-			//			opeflg = true;
-			//			textBox1.Text = result.ToString();
-			//			return;
-			//		}
-			//		else
-			//		{
-			//			return;
-			//		}
-			//	}
-			//	else
-			//	{
-			//		operateNumber = ((Button)sender).Text;
-			//		result = double.Parse(text);
-			//		eqflg = false;
-			//		opeflg = true;
-			//		return;
-			//	}
-			//}
-			//else
-			//{
-			//	operateNumber = ((Button)sender).Text;
-			//	eqflg = false;
-			//	return;
-			//}
-		}
-
-		/// <summary>
-		/// イコールクリック
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void cmdeq_Click(object sender, EventArgs e)
-		{
-			string inputNumber = textBox1.Text;
-
-			if (hasEqualInput) return;
-
-			if (GetOperator() == "")
-			{
-				hasEqualInput = true;
-				return;
-			}
-
-			//演算処理へ
-			Calculation();
-
-			hasEqualInput = true;
-			SetOparator("");
-			textBox1.Text = GetResultNumber().ToString();
-			return;
-			//string text = textBox1.Text;
-
-			//if (!hasEqualInput)
-			//{
-			//	if (operateNumber != "")
-			//	{
-
-			//		//演算処理へ
-			//		calmethod(text);
-
-			//		//結果入力
-			//		if (!errorflg)
-			//		{
-			//			textBox1.Text = result.ToString();
-
-			//			hasClickedJustBeforeOperationButton = false;
-			//			hasEqualInput = true;
-			//			operateNumber = "";
-			//			return;
-			//		}
-			//		else
-			//		{
-			//			return;
-			//		}
-			//	}
-			//	else
-			//	{
-			//		hasEqualInput = true;
-			//		return;
-			//	}
-			//}
-			//else
-			//{
-			//	return;
-			//}
-		}
-
-		/// <summary>
-		/// クリアクリック
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void cmdclear_Click(object sender, EventArgs e)
-		{
-			textBox1.Text = "0";
-			SetResultNumber(0);
-			SetOparator("");
-			hasClickedJustBeforeOperationButton = false;
-			hasDecimalPintInput = false;
-			hasEqualInput = false;
-			return;
-		}
-
-		/// <summary>
-		/// 演算処理
-		/// </summary>
-		/// <param name="inputStr">入力数字</param>
-		//private void calmethod(string inputStr)
-		//{
-		//	double inputNum = double.Parse(inputStr);
-
-		//	switch (operateNumber)
-		//	{
-		//		case "+":
-		//			result += inputNum;
-
-		//			break;
-
-		//		case "-":
-		//			result -= inputNum;
-
-		//			break;
-
-		//		case "*":
-		//			result *= inputNum;
-
-		//			break;
-
-		//		case "/":
-		//			if (result == 0 || inputNum == 0)
-		//			{
-		//				result = 0;
-		//			}
-		//			else
-		//			{
-		//				result /= inputNum;
-
-		//			}
-
-		//			break;
-
-		//	}
-
-		//	hasEqualInput = true;
-
-		//	//桁数チェック処理
-		//	NumberOgDigitChecker();
-
-		//	return;
-		//}
-
-		/// <summary>
-		///桁数チェック
-		/// </summary>
-		/// <param name="strNum">出力数値</param>
-		private void NumberOgDigitChecker(string resultNumber)
-		{
-			if (resultNumber.Length < 13)
-			{
-				SetResultNumber(double.Parse(resultNumber));
-				return;
-			}
-
-			//桁超え
-			SetResultNumber(double.Parse(resultNumber.Substring(0, 13)));
-			return;
-		}
-
-		/// <summary>
-		/// クリックボタン管理
-		/// </summary>
-		/// <param name="clickButtonText"></param>
-		/// <returns>クリックボタン内容</returns>
-		//private IsClickButton IsClickedButton(string clickButtonText)
-		//{
-		//	switch (clickedOperationButton)
-		//	{
-		//		case "+":
-		//			return IsClickButton.Plus;
-
-		//		case "-":
-		//			return IsClickButton.Minus;
-
-		//		case "*":
-		//			return IsClickButton.Prouduct;
-
-		//		case "/":
-		//			return IsClickButton.Division;
-
-		//		default:
-		//			return IsClickButton.None;
-		//	}
-		//}
-
-		/// <summary>
-		/// 直前クリックボタン管理
-		/// </summary>
-		/// <returns></returns>
-		//private IsClickButton IsClickedJustBeforeButton()
-		//{
-		//	switch (clickedOperationButton)
-		//	{
-
-		//		case "+":
-		//			return IsClickButton.Plus;
-
-		//		case "-":
-		//			return IsClickButton.Minus;
-
-		//		case "*":
-		//			return IsClickButton.Prouduct;
-
-		//		case "/":
-		//			return IsClickButton.Division;
-
-		//		case "=":
-		//			return IsClickButton.Equal;
-
-		//		default:
-		//			return IsClickButton.None;
-		//	}
-		//}
-
-		/// <summary>
-		/// 数値入力処理
-		/// </summary>
-		/// <param name="inputNumber"></param>
-		private void IsInputNumber(string inputNumber)
-		{
-			if (textBox1.Text.Length > 13) return;
-
-			if (hasEqualInput)
-			{
-				textBox1.Text = inputNumber;
-				hasEqualInput = false;
-			}
-
-			if (GetOperator() != "")
-			{
-				//テキストボックス数値を退避
-				SetResultNumber(double.Parse(textBox1.Text));
-				hasClickedJustBeforeOperationButton = false;
-				return;
-			}
-
-			if(textBox1.Text == "0")
+			if (textBox1.Text == "0")
 			{
 				textBox1.Text = inputNumber;
 				return;
@@ -346,76 +80,145 @@ namespace Dentaku
 		}
 
 		/// <summary>
-		/// 0処理
+		/// 小数点クリック
 		/// </summary>
-		//private void IsInputZero(string inputZero)
-		//{
-		//	if (textBox1.Text == "0") return;
-
-		//	//数字入力処理へ
-		//	IsInputNumber(inputZero);
-		//	return;
-		//}
-
-		/// <summary>
-		/// 小数点処理
-		/// </summary>
-		/// <param name="inputDesimalPoint"></param>
-		private void IsInputDecimalPoint(string inputDesimalPoint)
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void IsClickDecimalPointButton(object sender, EventArgs e)
 		{
-			if (hasDecimalPintInput) return;
+			if (textBox1.Text.Length > 13) return;
 
-			//数字入力処理へ
-			IsInputNumber(inputDesimalPoint);
-			hasDecimalPintInput = true;
+			//小数点入力済み判定
+			if (getSet.hasDecimalPointInputed) return;
+
+			if (getSet.hasClickedJustBeforeOperatorButton)
+			{
+				textBox1.Text = "0.";
+				getSet.hasClickedJustBeforeOperatorButton = false;
+				return;
+			}
+
+			if (getSet.hasClickedJustBeforeEqualButton)
+			{
+				textBox1.Text = "0.";
+				getSet.hasClickedJustBeforeEqualButton = false;
+				return;
+			}
+
+			textBox1.Text += ((Button)sender).Text;
+			getSet.hasDecimalPointInputed = true;
 			return;
 		}
 
 		/// <summary>
-		/// 演算子set
+		/// 演算子クリック
 		/// </summary>
-		/// <param name="InputOperator"></param>
-		private void SetOparator(string InputOperator)
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void IsClickOperatorButton(object sender, EventArgs e)
 		{
-			operateNumber = InputOperator;
+			var inputOperatorNumber = ((Button)sender).Text;
+			getSet.hasClickedJustBeforeEqualButton = false;
+
+			if (getSet.hasClickedJustBeforeOperatorButton)
+			{
+				getSet.operatorNumber = inputOperatorNumber;
+				return;
+			}
+
+			//演算子入力済み判定
+			if (getSet.operatorNumber == "")
+			{
+				getSet.hasClickedJustBeforeOperatorButton = true;
+				getSet.operatorNumber = inputOperatorNumber;
+				return;
+			}
+
+			//演算処理
+			Calculation();
+
+			getSet.hasClickedJustBeforeOperatorButton = true;
+			textBox1.Text = getSet.resultNumber.ToString();
+			getSet.operatorNumber = inputOperatorNumber;
 			return;
 		}
 
 		/// <summary>
-		/// 演算子get
+		/// イコールクリック
 		/// </summary>
-		/// <returns></returns>
-		private string GetOperator()
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void IsClickEqualButton(object sender, EventArgs e)
 		{
-			return operateNumber;
-		}
+			var inputNumber = textBox1.Text;
 
-		/// <summary>
-		/// 計算結果set
-		/// </summary>
-		/// <param name="outputResultNumber"></param>
-		private void SetResultNumber(double outputResultNumber)
-		{
-			result = outputResultNumber;
+			if (getSet.hasClickedJustBeforeEqualButton) return;
+
+			if (getSet.operatorNumber == "")
+			{
+				getSet.hasClickedJustBeforeEqualButton = true;
+				return;
+			}
+
+			if(getSet.hasClickedJustBeforeOperatorButton)
+			{
+				getSet.operatorNumber = "";
+				getSet.hasClickedJustBeforeOperatorButton = false;
+				getSet.hasClickedJustBeforeEqualButton = true;
+				return;
+			}
+
+			//演算処理へ
+			Calculation();
+
+			getSet.hasClickedJustBeforeEqualButton = true;
+			getSet.operatorNumber = "";
+			textBox1.Text = getSet.resultNumber.ToString();
+			getSet.resultNumber = 0;
 			return;
 		}
 
 		/// <summary>
-		/// 計算結果get
+		/// クリアクリック
 		/// </summary>
-		/// <returns></returns>
-		private double GetResultNumber()
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void IsClickClearButton(object sender, EventArgs e)
 		{
-			return result;
+			textBox1.Text = "0";
+			getSet.resultNumber = 0;
+			getSet.operatorNumber = "";
+			getSet.hasClickedJustBeforeOperatorButton = false;
+			getSet.hasDecimalPointInputed = false;
+			getSet.hasClickedJustBeforeEqualButton = false;
+			return;
 		}
+
+		/// <summary>
+		///桁数チェック
+		/// </summary>
+		/// <param name="strNum">出力数値</param>
+		private void NumberOfDigitChecker(string resultNumber)
+		{
+			if (resultNumber.Length < 13)
+			{
+				getSet.resultNumber = double.Parse(resultNumber);
+				return;
+			}
+
+			//桁超え（13桁を超えた後ろの数値は表示しない）
+			getSet.resultNumber = double.Parse(resultNumber.Substring(0, 13));
+			return;
+		}
+
 		/// <summary>
 		/// 演算処理
 		/// </summary>
 		private void Calculation()
 		{
-			double resultNumber = GetResultNumber();
+			var resultNumber = getSet.resultNumber;
 
-			switch (GetOperator())
+			switch (getSet.operatorNumber)
 			{
 				case "+":
 					resultNumber += double.Parse(textBox1.Text);
@@ -447,12 +250,11 @@ namespace Dentaku
 
 			}
 
-			string resultNumber_Str = resultNumber.ToString();
+			var resultNumber_Str = resultNumber.ToString();
 			//桁数チェック処理
-			NumberOgDigitChecker(resultNumber_Str);
+			NumberOfDigitChecker(resultNumber_Str);
 
 			return;
-
 		}
 	}
 }

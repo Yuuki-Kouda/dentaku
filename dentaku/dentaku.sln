@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 15 for Windows Desktop
 VisualStudioVersion = 15.0.28307.779
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dentaku", "dentaku\dentaku.csproj", "{ECA4E04D-C90B-4A45-9646-2E454D2A1754}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dentaku", "dentaku\Dentaku.csproj", "{ECA4E04D-C90B-4A45-9646-2E454D2A1754}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
