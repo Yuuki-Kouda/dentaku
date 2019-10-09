@@ -22,51 +22,6 @@ namespace Dentaku
 		/// </summary>
 		public class GetSet
 		{
-			string InputNumber = ((Button)sender).Text;
-			//
-
-			IsInputNumber(InputNumber);
-			return;
-
-			//	string text = textBox1.Text;
-			//Input_str = ((Button)sender).Text;
-
-			////演算子、またはイコールが入力されているとき
-			//if (opeflg || eqflg)
-			//{
-			//	//演算子フラグチェック
-			//	if (opeflg)
-			//	{
-			//		HasDecimalPintInput = false;
-			//		opeflg = false;
-			//		textBox1.Text = Input_str;
-			//		return;
-			//	}
-			//	else
-			//	{
-			//		eqflg = false;
-			//		HasDecimalPintInput = false;
-			//		textBox1.Text = Input_str;
-			//		return;
-			//	}
-			//}
-			////テキストボックスに0が表示されているとき
-			//else if (text == "0")
-			//{
-			//	textBox1.Text = Input_str;
-			//	return;
-			//}
-			////桁数チェック
-			//else if (text.Length < 13)
-			//{
-			//	text += Input_str;
-			//	textBox1.Text = text;
-			//	return;
-			//}
-			//else
-			//{
-			//	return;
-			//}
 			//計算結果
 			public double resultNumber { get; set; } = 0;
 			//演算子
@@ -79,69 +34,38 @@ namespace Dentaku
 			public bool hasClickedJustBeforeEqualButton { get; set; } = false;
 		}
 
-		/// <summary>
-		/// 小数点クリック
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
-		private void cmddp_Click(object sender, EventArgs e)
-		{
-			IsInputDecimalPoint(((Button)sender).Text);
-			//string text = textBox1.Text;
-
-			//if (opeflg || eqflg)
-			//{
-			//	if (opeflg)
-			//	{
-			//		result = double.Parse(text);
-			//		HasDecimalPintInput = true;
-			//		opeflg = false;
-			//		textBox1.Text = "0.";
-			//	}
-			//	else
-			//	{
-			//		eqflg = false;
-			//		HasDecimalPintInput = true;
-			//		textBox1.Text = "0.";
-			//	}
-			//}
-			////小数点フラグチェックと桁数チェック
-			//else if (!HasDecimalPintInput && text.Length < 13)
-			//{
-			//	text += ".";
-			//	textBox1.Text = text;
-			//	HasDecimalPintInput = true;
-			//}
-			//else
-			//{
-			//	return;
-			//}
-		}
 		//インスタンス生成
 		GetSet getSet = new GetSet();
 
 		/// <summary>
-		/// 演算子クリック
+		/// 数字クリック
 		/// </summary>
 		/// <param name="sender"></param>
 		/// <param name="e"></param>
-		private void cmdplus_Click(object sender, EventArgs e)
+		private void IsClickNumberButton(object sender, EventArgs e)
 		{
-			string textNumber = textBox1.Text;
-			string inputOperatorNumber = ((Button)sender).Text;
-			hasEqualInput = false;
+			//入力数値
+			var inputNumber = ((Button)sender).Text;
 
-			if (!hasClickedJustBeforeOperationButton)
+			//桁チェック
+			if (textBox1.Text.Length > 13) return;
+
+			//直前ボタン判定（イコール）
+			if (getSet.hasClickedJustBeforeEqualButton)
 			{
-				SetOparator(inputOperatorNumber);
-				hasClickedJustBeforeOperationButton = true;
+				textBox1.Text = inputNumber;
+				getSet.hasClickedJustBeforeEqualButton = false;
 				return;
 			}
 
-			if (operateNumber == "")
+			//直前ボタン判定（演算子）
+			if (getSet.hasClickedJustBeforeOperatorButton)
 			{
-				SetOparator(inputOperatorNumber);
-				SetResultNumber(double.Parse(textNumber));
+				//テキストボックス数値を退避
+				getSet.resultNumber = double.Parse(textBox1.Text);
+
+				textBox1.Text = inputNumber;
+				getSet.hasClickedJustBeforeOperatorButton = false;
 				return;
 			}
 
