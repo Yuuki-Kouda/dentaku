@@ -74,7 +74,6 @@ namespace Dentaku
 				textBox1.Text = inputNumber;
 				return;
 			}
-
 			textBox1.Text += inputNumber;
 			return;
 		}
@@ -104,7 +103,6 @@ namespace Dentaku
 				getSet.hasClickedJustBeforeEqualButton = false;
 				return;
 			}
-
 			textBox1.Text += ((Button)sender).Text;
 			getSet.hasDecimalPointInputed = true;
 			return;
@@ -134,7 +132,6 @@ namespace Dentaku
 				getSet.operatorNumber = inputOperatorNumber;
 				return;
 			}
-
 			//演算処理
 			Calculation();
 
@@ -169,7 +166,6 @@ namespace Dentaku
 				getSet.hasClickedJustBeforeEqualButton = true;
 				return;
 			}
-
 			//演算処理へ
 			Calculation();
 
@@ -207,7 +203,6 @@ namespace Dentaku
 				getSet.resultNumber = double.Parse(resultNumber);
 				return;
 			}
-
 			//桁超え（13桁を超えた後ろの数値は表示しない）
 			getSet.resultNumber = double.Parse(resultNumber.Substring(0, 13));
 			return;
@@ -251,8 +246,8 @@ namespace Dentaku
 					break;
 
 			}
-
 			var resultNumber_Str = resultNumber.ToString();
+
 			//桁数チェック処理
 			NumberOfDigitChecker(resultNumber_Str);
 
